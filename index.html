@@ -6,18 +6,41 @@
     <title>My Form</title>
     <style>
         body {
-            background-color: #f0f0f0;
+            margin: 0;
+            padding: 32px 16px;
+            background: linear-gradient(135deg, #eef3ff, #f8f9fc);
             font-family: Arial, sans-serif;
+            color: #25314b;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 24px auto;
+            padding: 28px 32px;
+            background: #fff;
+            border: 1px solid #e1e7f2;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(28, 47, 91, 0.1);
         }
 
         h1 {
             color: #09008d;
-            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 28px;
+        }
+
+        hr {
+            max-width: 800px;
+            margin: 18px auto;
+            border: 0;
+            border-top: 2px solid #dce4f3;
         }
 
         p {
             color: #000000;
-            font-size: 12px;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         t {
@@ -36,22 +59,81 @@
         h2 {
             color: #f70101;
             font-size: 12px;
+            line-height: 1.5;
+            margin: 16px 0 10px;
         }
 
         label {
             display: inline-block;
-            width: 200px;
+            width: 220px;
+            margin: 7px 8px 7px 0;
         }
 
         label2 {
             display: inline-block;
-            width: 300px;
+            width: 320px;
+            margin: 7px 8px 7px 0;
         }
 
         input[type="text"],
         input[type="email"] {
             box-sizing: border-box;
             width: 250px;
+            max-width: 100%;
+            padding: 9px 10px;
+            border: 1px solid #c7d0e0;
+            border-radius: 6px;
+            font: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #315bd6;
+            box-shadow: 0 0 0 3px rgba(49, 91, 214, 0.15);
+        }
+
+        input:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #d83a3a;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #234fc5;
+        }
+
+        input[type="submit"] {
+            margin-top: 18px;
+            padding: 11px 24px;
+            border: 0;
+            border-radius: 7px;
+            background: #234fc5;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #173c9e;
+        }
+
+        #formMessage {
+            min-height: 1.5em;
+            margin: 12px 0 0;
+            color: #b42318;
+            font-weight: bold;
+        }
+
+        #formMessage.success {
+            color: #187545;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 22px 12px; }
+            h1 { font-size: 23px; }
+            form { padding: 20px 16px; }
+            label, label2 { display: block; width: auto; margin-bottom: 3px; }
+            input[type="text"], input[type="email"], input[type="date"] { width: 100%; }
         }
     </style>
 </head>
@@ -59,38 +141,38 @@
     <h1>Online Member User ID Registration</h1>
 
     <hr>
-    <form action="/submit" method="post">
+    <form id="registrationForm" action="/submit" method="post" novalidate>
         <p>Please supply the following information as reported to the Social Security System.</p>
 
         <label for="CRNS"><w>*</w> <t>CRN/SS Number:</t></label>
-        <input type="text" id="CRNS" name="CRNS"><br>
+        <input type="text" id="CRNS" name="CRNS" required autocomplete="off"><br>
 
         <h2>Your email address is other than yahoo.com; kindly inform your network administrator not to block mail from sss.gov.ph.</h2>
         <label for="email"><w>*</w> <t>Email Address:</t></label>
-        <input type="email" id="email" name="email"><br>
+        <input type="email" id="email" name="email" required autocomplete="email"><br>
 
         <label for="Cemail"><w>*</w> <t>Confirm Email Address:</t></label>
-        <input type="email" id="Cemail" name="Cemail"><br>
+        <input type="email" id="Cemail" name="Cemail" required autocomplete="off"><br>
 
         <h2>Length must be 8-20 characters. First character must be alphabetic. No special characters except underscore. (Ex. Juan_Cruz1234)</h2>
         <label for="PrefUserId"><w>*</w> <t>User ID:</t></label>
-        <input type="text" id="PrefUserId" name="PrefUserId"><br>
+        <input type="text" id="PrefUserId" name="PrefUserId" required minlength="8" maxlength="20" pattern="[A-Za-z][A-Za-z0-9_]{7,19}" autocomplete="username" title="8–20 characters; start with a letter and use only letters, numbers, or underscores"><br>
 
         <label for="CPrefUserId"><w>*</w> <t>Confirm Preferred User ID:</t></label>
-        <input type="text" id="CPrefUserId" name="CPrefUserId"><br><br>
+        <input type="text" id="CPrefUserId" name="CPrefUserId" required autocomplete="off"><br><br>
 
         <h2>The following characters are not allowed: # % () \ - ' " || && \**/</h2>
         <label for="Surname"><w>*</w> <t>Surname/Last Name:</t></label>
-        <input type="text" id="Surname" name="Surname"><br>
+        <input type="text" id="Surname" name="Surname" required><br>
 
         <label for="GivenName"><w>*</w> <t>Given Name:</t></label>
-        <input type="text" id="GivenName" name="GivenName"><br>
+        <input type="text" id="GivenName" name="GivenName" required><br>
 
         <label for="MiddleName"><t>Middle Name:</t></label>
         <input type="text" id="MiddleName" name="MiddleName"><br>
 
         <label for="dob"><w>*</w> <t>Date of Birth:</t></label>
-        <input type="text" id="dob" name="dob"><br><br>
+        <input type="date" id="dob" name="dob" required><br><br>
 
         <p><w>*</w> Mailing Address (Philippines Address)</p>
 
@@ -113,6 +195,48 @@
         <label for="Province"><t>Province</t></label><br>
 
         <input type="submit" value="Submit">
+        <p id="formMessage" role="status" aria-live="polite"></p>
     </form>
+    <script>
+        const form = document.getElementById('registrationForm');
+        const email = document.getElementById('email');
+        const confirmEmail = document.getElementById('Cemail');
+        const userId = document.getElementById('PrefUserId');
+        const confirmUserId = document.getElementById('CPrefUserId');
+        const message = document.getElementById('formMessage');
+
+        function checkMatch(field, other, description) {
+            field.setCustomValidity(field.value && field.value !== other.value
+                ? description + ' must match.' : '');
+        }
+
+        email.addEventListener('input', () => checkMatch(confirmEmail, email, 'Email addresses'));
+        confirmEmail.addEventListener('input', () => checkMatch(confirmEmail, email, 'Email addresses'));
+        userId.addEventListener('input', () => checkMatch(confirmUserId, userId, 'User IDs'));
+        confirmUserId.addEventListener('input', () => checkMatch(confirmUserId, userId, 'User IDs'));
+
+        // The location choices are alternatives, so selecting one clears the other.
+        const locations = document.querySelectorAll('input[type="checkbox"]');
+        locations.forEach((choice) => choice.addEventListener('change', () => {
+            if (choice.checked) locations.forEach((other) => {
+                if (other !== choice) other.checked = false;
+            });
+        }));
+
+        form.addEventListener('submit', (event) => {
+            checkMatch(confirmEmail, email, 'Email addresses');
+            checkMatch(confirmUserId, userId, 'User IDs');
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                message.classList.remove('success');
+                message.textContent = 'Please review the highlighted fields and correct the errors.';
+                form.reportValidity();
+                return;
+            }
+            event.preventDefault();
+            message.classList.add('success');
+            message.textContent = 'The form is valid and ready to submit.';
+        });
+    </script>
 </body>
 </html>
