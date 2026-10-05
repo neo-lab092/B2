@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Form</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #09008d;
+            font-size: 24px;
+        }
+
+        p {
+            color: #000000;
+            font-size: 12px;
+        }
+        
+        t {
+            color: #000000;
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        w {
+            color: #fe0000;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+
+        h2 {
+            color: #f70101;
+            font-size: 12px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        label2 {
+            display: inline-block;
+            width: 300px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            box-sizing: border-box;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Member User ID Registration</h1>
+
+    <hr>
+    <form action="/submit" method="post">
+        <p>Please supply the following information as reported to the Social Security System.</p>
+
+        <label for="CRNS"><w>*</w> <t>CRN/SS Number:</t></label>
+        <input type="text" id="CRNS" name="CRNS"><br>
+
+        <h2>Your email address is other than yahoo.com; kindly inform your network administrator not to block mail from sss.gov.ph.</h2>
+        <label for="email"><w>*</w> <t>Email Address:</t></label>
+        <input type="email" id="email" name="email"><br>
+
+        <label for="Cemail"><w>*</w> <t>Confirm Email Address:</t></label>
+        <input type="email" id="Cemail" name="Cemail"><br>
+
+        <h2>Length must be 8-20 characters. First character must be alphabetic. No special characters except underscore. (Ex. Juan_Cruz1234)</h2>
+        <label for="PrefUserId"><w>*</w> <t>User ID:</t></label>
+        <input type="text" id="PrefUserId" name="PrefUserId"><br>
+
+        <label for="CPrefUserId"><w>*</w> <t>Confirm Preferred User ID:</t></label>
+        <input type="text" id="CPrefUserId" name="CPrefUserId"><br><br>
+
+        <h2>The following characters are not allowed: # % () \ - ' " || && \**/</h2>
+        <label for="Surname"><w>*</w> <t>Surname/Last Name:</t></label>
+        <input type="text" id="Surname" name="Surname"><br>
+
+        <label for="GivenName"><w>*</w> <t>Given Name:</t></label>
+        <input type="text" id="GivenName" name="GivenName"><br>
+
+        <label for="MiddleName"><t>Middle Name:</t></label>
+        <input type="text" id="MiddleName" name="MiddleName"><br>
+
+        <label for="dob"><w>*</w> <t>Date of Birth:</t></label>
+        <input type="text" id="dob" name="dob"><br><br>
+
+        <p><w>*</w> Mailing Address (Philippines Address)</p>
+
+        <label2 for="MA"><t>Room / Floor / Unit No. & Building Name:</t></label2>
+        <input type="text" id="MA" name="MA"><br>
+        
+        <label2 for="HL"><t>House / Lot & Block No.:</t></label2>
+        <input type="text" id="HL" name="HL"><br>
+        
+        <label2 for="S"><t>Street:</t></label2>
+        <input type="text" id="S" name="S"><br>
+        
+        <label2 for="Su"><t>Subdivision:</t></label2>
+        <input type="text" id="Su" name="Su"><br>
+
+        <input type="checkbox" id="Metro Manila" name="Metro Manila" value="Metro Manila">
+        <label for="Metro Manila"><t>Metro Manila</t></label>
+                
+        <input type="checkbox" id="Province" name="Province" value="Province">
+        <label for="Province"><t>Province</t></label><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
